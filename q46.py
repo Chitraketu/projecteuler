@@ -1,35 +1,27 @@
-
 import q27
-
-
-def has4pf(x, primes):
-	count = 0
-	while x != 1:
-		for p in primes:
-			if x % p == 0:
-				count += 1
-				while x % p != 0:
-					x /= p
-
-			if count > 4:
-				return False
-
-
-	return count == 4
+import math
 
 
 if __name__ == '__main__':
-	primes = q27.generatePrimeList(1000000)	
+	primes = q27.generatePrimeList(1000000)
+	l = list(primes)
+	l.sort()
 
+	for x in range(9,1000001,2):
+		if x in primes:
+			continue
+		flag = False
+		for p in l:
+			if p >= x:
+				break
 
-	n = 211
-	print("hellow")
-	while(1):
-		if has4pf(n+4,primes) and has4pf(n+3,primes) and has4pf(n+2,primes) and has4pf(n+1,primes):
-			print (n)
-			print ('is this it?')
+			y = math.sqrt((x-p)/2)
+			print (y)
+			if y == int(y):
+				flag = True
+				break
+
+		if not flag:
+			print (x)
 			break
 
-		n+=1
-		if n >= 100000:
-			break
