@@ -14,12 +14,25 @@ def pent(n):
 if __name__ == '__main__':
 	l = {}
 
-	for x in range(2,100):
-		for y in range(x+1,100):
+	print (isPent(1020))
+
+	for x in range(2,3000):
+		for y in range(x+1,3000):
 			z = isPent(pent(x) + pent(y))
 			if z > -1:
 				l[(x,y)] = z
+				r1 = isPent(pent(y)+pent(z))
+				r2 = isPent(pent(x)+pent(z))
+				if r1 > -1: 
+					print (x,y,z,r1)
+					print (pent(x))
+				if r2 > -1:
+					print (y,x,z,r2)
+					print (pent(y))
 
-	print (l)
+
+
+
+	print (len(l))
 
 
