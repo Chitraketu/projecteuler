@@ -15,10 +15,10 @@ def pythogoreanTriplets(limits):
 			if c > limits:
 				break
 			triplets.append((a,b,c))
-			k = 1
+			k = 2
 			while (c*k < limits):
-				k += 1
 				triplets.append((a*k,b*k,c*k))
+				k += 1
 		m += 1
 	return triplets
 if __name__ == '__main__':
