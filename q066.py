@@ -1,5 +1,5 @@
 import math
-import q64
+import q064 as q64
 from fractions import Fraction as f
 
 def pells(x,y,d):
