@@ -8,7 +8,7 @@ def primes(n):
             sieve[i*i//2::i] = bytearray((n-i*i-1)//(2*i)+1)
     return [2,*compress(range(3,n,2), sieve[1:])]
 
-def factorization(n):
+def factorization(n,primeslist):
     """ Returns a list of the prime factorization of n """
     pf = []
     for p in primeslist:
@@ -21,10 +21,10 @@ def factorization(n):
     if n > 1: pf.append((n, 1))
     return pf
 
-def divisors(n):
+def divisors(n,primeslist):
     """ Returns an unsorted list of the divisors of n """
     divs = [1]
-    for p, e in factorization(n):
+    for p, e in factorization(n,primeslist):
         divs += [x*p**k for k in range(1,e+1) for x in divs]
     return divs
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     primeslist = primes(int(n**0.5)+1) 
     sumD = {}
     for i in range(2,n):
-        sumD[i] = sum(divisors(i)) - i
+        sumD[i] = sum(divisors(i,primeslist)) - i
     sumD = {k:v for k, v in sumD.items() if v < n}
     print ('sumD calculation finished')
     maxK = 0
